@@ -67,6 +67,46 @@
             <version>3.6.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.stepstone.inbucket</groupId>
+            <artifactId>inbucket-client</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <!-- Log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <!-- Galen Framework -->
+        <dependency>
+            <groupId>com.galenframework</groupId>
+            <artifactId>galen-java-support</artifactId>
+            <version>2.3.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.2</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

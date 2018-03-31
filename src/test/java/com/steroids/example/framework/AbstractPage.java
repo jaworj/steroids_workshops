@@ -1,13 +1,20 @@
-package com.automationpanda.example.framework;
+package com.steroids.example.framework;
 
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.DataProvider;
 
-public abstract class AbstractPandaPage {
+
+import java.util.List;
+import static java.util.Arrays.asList;
+
+public abstract class AbstractPage {
 
     private WebDriver driver;
 
-    public AbstractPandaPage(WebDriver driver) {
+    public AbstractPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -18,5 +25,6 @@ public abstract class AbstractPandaPage {
     protected WebDriverWait driverWait(long timeoutSeconds) {
         return new WebDriverWait(driver, timeoutSeconds);
     }
+
 
 }
