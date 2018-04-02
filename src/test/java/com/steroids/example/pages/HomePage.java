@@ -6,6 +6,7 @@ import com.galenframework.reports.HtmlReportBuilder;
 import com.galenframework.reports.model.LayoutReport;
 import com.steroids.example.framework.AbstractPage;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import com.galenframework.api.Galen;
 import org.testng.Assert;
@@ -18,26 +19,28 @@ import java.util.List;
 
 public class HomePage extends AbstractPage {
 
-    private static final String GOOGLE_HOME_URL = "https://www.google.com/";
+    private static final String STST_HOME_URL = "https://www.stepstone.de/";
     private static final By BY_SEARCH_FIELD = By.name("q");
+    private static final By BY_SEARCH_BUTTON = By.cssSelector("button.btn-primary");
+    private static final By BY_JAPU_MODAL = By.id("japubox-popover__modal");
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
     public void navigateToHomePage() {
-        getDriver().navigate().to(GOOGLE_HOME_URL);
+        getDriver().navigate().to(STST_HOME_URL);
     }
 
-    public void enterSearchPhrase(String phrase) {
-        WebElement searchField = driverWait(10).until(ExpectedConditions.elementToBeClickable(BY_SEARCH_FIELD));
-        searchField.sendKeys(phrase);
-        searchField.submit();
+    public void performSearch() {
+        WebElement elSearchButton = driverWait(10).until(ExpectedConditions.elementToBeClickable(BY_SEARCH_BUTTON));
+        elSearchButton.click();
     }
 
-    public boolean pageTitleContains(String phrase) {
+    public boolean japuIsDisplayed() {
         try {
-            return driverWait(5).until(ExpectedConditions.titleContains(phrase));
+            WebElement elJapuModal = driverWait(5).until(ExpectedConditions.elementToBeClickable(BY_JAPU_MODAL));
+            return elJapuModal.isDisplayed();
         } catch (TimeoutException ex) {
             return false;
         }
@@ -56,7 +59,7 @@ public class HomePage extends AbstractPage {
         LayoutReport layoutReport = Galen.checkLayout(driver, "/Users/jaworj01/Git/cucumber-jvm-java-example/src/test/resources/com/steroids/example/specs/loginPage.gspec", Arrays.asList("tablet"));
 
         //Create a tests list
-        List<GalenTestInfo> tests = new LinkedList<GalenTestInfo>();
+        List<GalenTestInfo> tests = new LinkedList<>();
 
         //Create a GalenTestInfo object
         GalenTestInfo test = GalenTestInfo.fromString("homepage layout");

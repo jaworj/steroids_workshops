@@ -1,6 +1,5 @@
 package com.steroids.example.stepdefs;
 
-import com.steroids.example.framework.AbstractPage;
 import com.steroids.example.framework.EmailChecker;
 import com.steroids.example.pages.HomePage;
 import cucumber.api.java.After;
@@ -33,19 +32,19 @@ public class HomePageSteps {
         homePage = new HomePage(driver);
     }
 
-    @Given("^I am on the home$")
-    public void aWebBrowserIsOnTheGooglePage() {
+    @Given("^I am on the home page$")
+    public void iAmOnTheHomePage() {
         homePage.navigateToHomePage();
     }
 
-    @When("^the search phrase \"([^\"]*)\" is entered$")
-    public void theSearchPhraseIsEntered(String phrase) {
-        homePage.enterSearchPhrase(phrase);
+    @When("^I perform search$")
+    public void theSearchPhraseIsEntered() {
+        homePage.performSearch();
     }
 
-    @Then("^results for \"([^\"]*)\" are shown$")
-    public void resultsForAreShown(String phrase) {
-        assertThat(homePage.pageTitleContains(phrase)).isTrue();
+    @Then("^results are shown$")
+    public void resultsForAreShown() {
+        assertThat(homePage.japuIsDisplayed()).isTrue();
     }
 
     @Then("^check email \"([^\"]*)\"$")

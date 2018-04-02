@@ -1,14 +1,7 @@
 package com.steroids.example.framework;
 
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.DataProvider;
-
-
-import java.util.List;
-import static java.util.Arrays.asList;
 
 public abstract class AbstractPage {
 

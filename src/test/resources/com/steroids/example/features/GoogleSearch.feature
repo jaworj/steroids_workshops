@@ -5,9 +5,9 @@ Feature: Job alert
 
   @automated @desktop @jobAlert
   Scenario: Create Job alert
-    Given I am on the home
-    When the search phrase "panda" is entered
-    Then results for "panda" are shown
+    Given I am on the home page
+    When I perform search
+    Then results are shown
     Then I check layout on "tablet"
-#    Then check email "email"
+    Then check email "email"
     Then I check performance
