@@ -7,7 +7,7 @@ Feature: Job alert
   Scenario: Create Job alert
     Given I am on the home page
     When I perform search
-    Then results are shown
+    Then Japu is shown
     Then I check layout on "tablet"
     Then check email "email"
     Then I check performance

@@ -1,17 +1,17 @@
 @objects
-    login-box           id  hdtb-msb
+    login-box           css  div.modal-dialog_mex
 
 
 = Login box =
     @on *
         login-box:
-            height 50 to 70px
+            height 350 to 470px
 
     @on desktop, tablet
         login-box:
-            height 50 to 70px
+            height 350 to 470px
 
     @on mobile
         login-box:
-            height 50 to 70px
+            height 350 to 470px
 

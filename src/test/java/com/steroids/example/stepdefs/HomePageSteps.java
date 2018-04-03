@@ -42,7 +42,7 @@ public class HomePageSteps {
         homePage.performSearch();
     }
 
-    @Then("^results are shown$")
+    @Then("^Japu is shown$")
     public void resultsForAreShown() {
         assertThat(homePage.japuIsDisplayed()).isTrue();
     }
