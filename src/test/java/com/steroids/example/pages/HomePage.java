@@ -26,7 +26,7 @@ public class HomePage extends AbstractPage {
   private static final String STST_HOME_URL = "https://www.stepstone.de/";
   private static final By BY_SEARCH_WHAT_FIELD = By.name("ke");
   private static final By BY_SEARCH_BUTTON = By.cssSelector("div.search-box__submit button");
-  private static final By BY_JAPU_MODAL = By.id("japubox-popover__modal");
+  private static final By BY_JAPO_MODAL = By.id("japubox-popover__modal");
   private static final By BY_JAPO_EMAIL_FIELD = By.cssSelector(".modal-content [name='email']");
   private static final By BY_JAPO_SAVE_BUTTON = By.cssSelector(".modal-content [type='submit']");
 
@@ -48,7 +48,7 @@ public class HomePage extends AbstractPage {
     try {
       WebElement
           elJapuModal =
-          driverWait(5).until(ExpectedConditions.elementToBeClickable(BY_JAPU_MODAL));
+          driverWait(5).until(ExpectedConditions.elementToBeClickable(BY_JAPO_MODAL));
       return elJapuModal.isDisplayed();
     } catch (TimeoutException ex) {
       return false;
@@ -78,7 +78,7 @@ public class HomePage extends AbstractPage {
     LayoutReport
         layoutReport =
         Galen.checkLayout(driver,
-                          "/Users/jaworj01/Git/cucumber-jvm-java-example/src/test/resources/com/steroids/example/specs/loginPage.gspec",
+                          "C:/Git/steroids_workshops/src/test/resources/com/steroids/example/specs/loginPage.gspec",
                           Arrays.asList("tablet"));
 
     //Create a tests list

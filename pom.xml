@@ -101,5 +101,11 @@
         </dependency>
 
     </dependencies>
+    <repositories>
+        <repository>
+            <id>test</id>
+            <url>http://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
 
 </project>

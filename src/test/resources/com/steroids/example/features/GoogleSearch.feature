@@ -7,9 +7,9 @@ Feature: Job alert
   Scenario: Create Job alert
     Given I am on the home page
     When I perform search
-    Then Japu is shown
+    Then Japo is shown
     Then I type random email into Japo
     And I save JobAgent from Japo
-    Then I check layout on "tablet"
-    Then check email "nope"
-    Then I check performance
+    Then Check JobAgent confirmation email
+    #Then I check layout on "tablet"
+    #Then I check performance
