@@ -63,7 +63,7 @@
         <dependency>
             <groupId>com.stepstone.inbucket</groupId>
             <artifactId>inbucket-client</artifactId>
-            <version>1.0.1</version>
+            <version>1.2.0</version>
         </dependency>
         <!-- Log4j -->
         <dependency>

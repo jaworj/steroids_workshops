@@ -47,9 +47,10 @@ public class HomePageSteps {
         assertThat(homePage.japuIsDisplayed()).isTrue();
     }
 
-    @Then("^check email \"([^\"]*)\"$")
-    public void checkMailbox(String mailbox) throws IOException {
-        emailChecker.getMessages();
+    @Then("^check email \"([^\"]*)\"$$")
+    public void checkMailbox(String mailboxName) throws IOException {
+        emailChecker = new EmailChecker();
+        emailChecker.getMessages(mailboxName);
     }
 
     @Then("^I check layout on \"([^\"]*)\"$")

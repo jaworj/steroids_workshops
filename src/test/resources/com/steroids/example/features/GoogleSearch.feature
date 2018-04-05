@@ -9,5 +9,5 @@ Feature: Job alert
     When I perform search
     Then Japu is shown
     Then I check layout on "tablet"
-    Then check email "email"
+    Then check email "nope"
     Then I check performance
