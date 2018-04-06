@@ -28,7 +28,6 @@ public class HomePageSteps {
 
   private WebDriver driver;
   private HomePage homePage;
-  private EmailChecker emailChecker;
   private JobAgentConfirmationEmailPage jobAgentConfirmationEmailPage;
   private String email;
   private PasswordSetPage passwordSetPage;
@@ -79,12 +78,9 @@ public class HomePageSteps {
 
   @Then("^Open JobAgent confirmation email$")
   public void checkJobAgentConfirmationEmail() throws MailNotFoundException {
-    emailChecker = new EmailChecker();
     subject = "Bitte bestätigen Sie Ihren Job Agent - StepStone";
     jobAgentConfirmationEmailPage = new JobAgentConfirmationEmailPage(driver);
-    passwordSetPage = jobAgentConfirmationEmailPage
-        .confirmEmailMessageFistep(email, subject);
-
+    jobAgentConfirmationEmailPage.goToConfirmationEmailFistep(email, subject);
   }
 
   @Then("^I check layout on \"([^\"]*)\"$")
@@ -104,7 +100,12 @@ public class HomePageSteps {
 
   @When("^I click confirmation button$")
   public void iClickConfirmationButton() {
-    jobAgentConfirmationEmailPage.goToConfirmationEmailFistep(email, subject);
+    passwordSetPage = jobAgentConfirmationEmailPage
+        .confirmEmailMessageFistep(email, subject);
   }
 
+  @Then("^I am on Password Set page$")
+  public void iAmOnPasswordSetPage() {
+    Assert.assertTrue(passwordSetPage.checkIfThisIsPasswordSetPage());
+  }
 }
