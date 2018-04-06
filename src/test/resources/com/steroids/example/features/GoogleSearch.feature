@@ -10,6 +10,7 @@ Feature: Job alert
     Then Japo is shown
     Then I type random email into Japo
     And I save JobAgent from Japo
-    Then Check JobAgent confirmation email
+    Then Open JobAgent confirmation email
+    When I click confirmation button
     #Then I check layout on "tablet"
     #Then I check performance

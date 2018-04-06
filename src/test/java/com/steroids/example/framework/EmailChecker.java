@@ -45,7 +45,7 @@ public class EmailChecker {
       throws MailNotFoundException {
     try {
       Message message = getMessage(getMessageInfo(recipientAddress, subject));
-      return "http://fistep.com/mailbox/" + message.mailbox + "/" + message.id + "/html";
+      return HOST + "mailbox/" + message.mailbox + "/" + message.id + "/html";
     } catch (IOException e) {
       log.error("Could not retrieve mailbox from Inbucket", e);
     }

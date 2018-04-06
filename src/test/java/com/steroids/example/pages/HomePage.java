@@ -40,8 +40,8 @@ public class HomePage extends AbstractPage {
   }
 
   public void performSearch() {
-    WebElement ek = driverWait(10).until(ExpectedConditions.elementToBeClickable(BY_SEARCH_BUTTON));
-    ek.click();
+    WebElement elSearchButton = driverWait(10).until(ExpectedConditions.elementToBeClickable(BY_SEARCH_BUTTON));
+    elSearchButton.click();
   }
 
   public boolean japoIsDisplayed() {

@@ -6,6 +6,8 @@ import com.steroids.example.framework.AbstractPage;
 import com.steroids.example.framework.EmailChecker;
 import com.steroids.example.framework.MailNotFoundException;
 import com.steroids.example.pages.HomePage;
+import com.steroids.example.pages.JobAgentConfirmationEmailPage;
+import com.steroids.example.pages.PasswordSetPage;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -14,42 +16,35 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.UUID;
 
 public class HomePageSteps {
 
-
-  public static final Logger log = LogManager.getLogger(AbstractPage.class);
   private WebDriver driver;
   private HomePage homePage;
   private EmailChecker emailChecker;
+  private JobAgentConfirmationEmailPage jobAgentConfirmationEmailPage;
   private String email;
+  private PasswordSetPage passwordSetPage;
+  private String subject;
 
   @Before(value = "@automated", order = 1)
-  public void initWebDriver() throws Throwable {
+  public void initWebDriver() {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--start-maximized");
     System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
-    driver = new ChromeDriver();
+    driver = new ChromeDriver(options);
   }
 
   @Before(value = "@automated", order = 10)
   public void initHomePage() {
     homePage = new HomePage(driver);
-  }
-
-  public void logInfo(String message) {
-    Scanner scanner = new Scanner(message);
-    while (scanner.hasNextLine()) {
-      String line = scanner.nextLine();
-      log.info(line);
-    }
-    scanner.close();
   }
 
   @Given("^I am on the home page$")
@@ -73,7 +68,8 @@ public class HomePageSteps {
         "test" + UUID.randomUUID().toString().substring(0, 10)
         + "@ec2-34-244-6-12.eu-west-1.compute.amazonaws.com";
     homePage.typeEmailToJapo(email);
-    logInfo(email);
+    AbstractPage.logInfo(email);
+    //TODO: Rozkminić jak ograć loginfo żeby nie odwoływać się do AbstractPage
   }
 
   @And("^I save JobAgent from Japo$")
@@ -81,10 +77,14 @@ public class HomePageSteps {
     homePage.saveJobAgentFromJapo();
   }
 
-  @Then("^Check JobAgent confirmation email$")
+  @Then("^Open JobAgent confirmation email$")
   public void checkJobAgentConfirmationEmail() throws MailNotFoundException {
     emailChecker = new EmailChecker();
-    emailChecker.getMessageUrl(email,"Bitte bestätigen Sie Ihren Job Agent - StepStone");
+    subject = "Bitte bestätigen Sie Ihren Job Agent - StepStone";
+    jobAgentConfirmationEmailPage = new JobAgentConfirmationEmailPage(driver);
+    passwordSetPage = jobAgentConfirmationEmailPage
+        .confirmEmailMessageFistep(email, subject);
+
   }
 
   @Then("^I check layout on \"([^\"]*)\"$")
@@ -93,7 +93,7 @@ public class HomePageSteps {
   }
 
   @Then("^I check performance$")
-  public void checkPerf() throws IOException {
+  public void checkPerf() {
     homePage.checkPerformance();
   }
 
@@ -101,4 +101,10 @@ public class HomePageSteps {
   public void disposeWebDriver() {
     driver.quit();
   }
+
+  @When("^I click confirmation button$")
+  public void iClickConfirmationButton() {
+    jobAgentConfirmationEmailPage.goToConfirmationEmailFistep(email, subject);
+  }
+
 }
