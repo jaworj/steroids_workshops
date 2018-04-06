@@ -33,7 +33,7 @@ public class JobAgentConfirmationEmailPage extends AbstractPage {
             By.cssSelector("a[href*='EasyJobagent.register']")).getAttribute("href");
 
     getDriver().get(confirmationUrl);
-    return new PasswordSetPage();
+    return new PasswordSetPage(getDriver());
   }
 
   public void goToConfirmationEmailFistep(String email, String subject) {

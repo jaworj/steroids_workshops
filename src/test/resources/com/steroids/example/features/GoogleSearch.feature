@@ -12,5 +12,6 @@ Feature: Job alert
     And I save JobAgent from Japo
     Then Open JobAgent confirmation email
     When I click confirmation button
+    Then I am on Password Set page
     #Then I check layout on "tablet"
     #Then I check performance

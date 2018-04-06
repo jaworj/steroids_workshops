@@ -40,7 +40,9 @@ public class HomePage extends AbstractPage {
   }
 
   public void performSearch() {
-    WebElement elSearchButton = driverWait(10).until(ExpectedConditions.elementToBeClickable(BY_SEARCH_BUTTON));
+    WebElement
+        elSearchButton =
+        driverWait(10).until(ExpectedConditions.elementToBeClickable(BY_SEARCH_BUTTON));
     elSearchButton.click();
   }
 

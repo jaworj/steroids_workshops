@@ -16,23 +16,12 @@ import java.util.Optional;
 public class EmailChecker {
 
   private static final String HOST = "http://ec2-34-244-6-12.eu-west-1.compute.amazonaws.com/";
-  public final InbucketClient client = new InbucketClient(HOST);
-  private Logger log = LogManager.getLogger(this);
   private static final String NEW_LINE_REPLACEMENT_REGEX = "(\\r|\\n)";
+  private final InbucketClient client = new InbucketClient(HOST);
+  private Logger log = LogManager.getLogger(this);
 
-  public void getMessages(String mailboxName) throws IOException {
-    InbucketClient
-        client =
-        new InbucketClient(HOST);
-    List<MessageInfo> mailbox = client.getMailbox(mailboxName);
-    for (MessageInfo item : mailbox) {
-      Message message = client.getMessage(mailboxName, item.id);
-      System.out.println(message.subject);
-      System.out.println(message.body.html);
-    }
-  }
 
-  public Message getMessage(MessageInfo messageInfo) {
+  private Message getMessage(MessageInfo messageInfo) {
     try {
       return client.getMessage(messageInfo.mailbox, messageInfo.id);
     } catch (IOException e) {

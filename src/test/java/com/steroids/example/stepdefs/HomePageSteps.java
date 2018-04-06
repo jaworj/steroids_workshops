@@ -3,7 +3,6 @@ package com.steroids.example.stepdefs;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.steroids.example.framework.AbstractPage;
-import com.steroids.example.framework.EmailChecker;
 import com.steroids.example.framework.MailNotFoundException;
 import com.steroids.example.pages.HomePage;
 import com.steroids.example.pages.JobAgentConfirmationEmailPage;
