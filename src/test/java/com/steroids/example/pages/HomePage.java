@@ -63,7 +63,6 @@ public class HomePage extends AbstractPage {
 
   public void saveJobAgentFromJapo() {
     getDriver().findElement(BY_JAPO_SAVE_BUTTON).click();
-
   }
 
   public void checkPerformance() {
@@ -72,38 +71,5 @@ public class HomePage extends AbstractPage {
         outcome =
         js.executeScript("return (JSON.stringify(window.performance.timing))").toString();
     System.out.println(outcome);
-  }
-
-  public void homePageLayoutTest(WebDriver driver) throws IOException {
-    //Create a layoutReport object
-    //checkLayout function checks the layout and returns a LayoutReport object
-    LayoutReport
-        layoutReport =
-        Galen.checkLayout(driver,
-                          "C:/Git/steroids_workshops/src/test/resources/com/steroids/example/specs/loginPage.gspec",
-                          Arrays.asList("tablet"));
-
-    //Create a tests list
-    List<GalenTestInfo> tests = new LinkedList<>();
-
-    //Create a GalenTestInfo object
-    GalenTestInfo test = GalenTestInfo.fromString("homepage layout");
-
-    //Get layoutReport and assign to test object
-    test.getReport().layout(layoutReport, "check homepage layout");
-
-    //Add test object to the tests list
-    tests.add(test);
-
-    //Create a htmlReportBuilder object
-    HtmlReportBuilder htmlReportBuilder = new HtmlReportBuilder();
-
-    //Create a report under /target folder based on tests list
-    htmlReportBuilder.build(tests, "target");
-
-    //If layoutReport has errors Assert Fail
-    if (layoutReport.errors() > 0) {
-      Assert.fail("Layout test failed");
-    }
   }
 }

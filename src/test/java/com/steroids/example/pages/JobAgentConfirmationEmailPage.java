@@ -1,12 +1,21 @@
 package com.steroids.example.pages;
 
+import com.galenframework.api.Galen;
+import com.galenframework.reports.GalenTestInfo;
+import com.galenframework.reports.HtmlReportBuilder;
+import com.galenframework.reports.model.LayoutReport;
 import com.steroids.example.framework.AbstractPage;
 import com.steroids.example.framework.EmailChecker;
 import com.steroids.example.framework.MailNotFoundException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class JobAgentConfirmationEmailPage extends AbstractPage {
@@ -51,5 +60,37 @@ public class JobAgentConfirmationEmailPage extends AbstractPage {
       log.error("Cannot found confirmation email", e);
     }
     getDriver().get(url);
+  }
+
+  public void confirmationEmailPageLayoutTest(WebDriver driver) throws IOException {
+    //Create a layoutReport object
+    //checkLayout function checks the layout and returns a LayoutReport object
+    LayoutReport
+        layoutReport =
+        Galen.checkLayout(driver, "specs/email.gspec",
+                          Arrays.asList("desktop"));
+
+    //Create a tests list
+    List<GalenTestInfo> tests = new LinkedList<>();
+
+    //Create a GalenTestInfo object
+    GalenTestInfo test = GalenTestInfo.fromString("confirmation email layout");
+
+    //Get layoutReport and assign to test object
+    test.getReport().layout(layoutReport, "check confirmation email layout");
+
+    //Add test object to the tests list
+    tests.add(test);
+
+    //Create a htmlReportBuilder object
+    HtmlReportBuilder htmlReportBuilder = new HtmlReportBuilder();
+
+    //Create a report under /target folder based on tests list
+    htmlReportBuilder.build(tests, "target");
+
+    //If layoutReport has errors Assert Fail
+    if (layoutReport.errors() > 0) {
+      Assert.fail("Layout test failed");
+    }
   }
 }

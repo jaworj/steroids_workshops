@@ -36,7 +36,7 @@ public class HomePageSteps {
   public void initWebDriver() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--start-maximized");
-    System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
+    System.setProperty("webdriver.chrome.driver", "/Users/ozibkm01/Documents/Selenium/chromedriver");
     driver = new ChromeDriver(options);
   }
 
@@ -84,7 +84,7 @@ public class HomePageSteps {
 
   @Then("^I check layout on \"([^\"]*)\"$")
   public void checkLooksGood(String device) throws IOException {
-    homePage.homePageLayoutTest(driver);
+    jobAgentConfirmationEmailPage.confirmationEmailPageLayoutTest(driver);
   }
 
   @Then("^I check performance$")
