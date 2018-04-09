@@ -35,20 +35,21 @@ public class HomePageSteps {
   @Before(value = "@automated", order = 1)
   public void initWebDriver() {
     ChromeOptions options = new ChromeOptions();
+    String path;
     options.addArguments("--start-maximized");
     String os = System.getProperty("os.name").toLowerCase();
     ClassLoader classLoader = getClass().getClassLoader();
-    String path  = classLoader.getResource("chromedriver").getPath();
 
     if (os.contains("win")) {
-        path  = classLoader.getResource("chromedriver.exe").getPath();
+      path = classLoader.getResource("chromedriverwin.exe").getPath();
       System.setProperty("webdriver.chrome.driver", path);
     } else if (os.contains("mac")) {
-        path  = classLoader.getResource("chromedriver").getPath();
+      path = classLoader.getResource("chromedriver").getPath();
       System.setProperty("webdriver.chrome.driver", path);
-    } else
-        path  = classLoader.getResource("chromedriverlin").getPath();
-      System.setProperty("webdriver.chrome.driver", path);
+    } else {
+      path = classLoader.getResource("chromedriverlin").getPath();
+    }
+    System.setProperty("webdriver.chrome.driver", path);
     driver = new ChromeDriver(options);
   }
 
