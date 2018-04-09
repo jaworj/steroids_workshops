@@ -31,11 +31,14 @@ public class EmailChecker {
   }
 
   public String getMessageUrl(String recipientAddress, String subject)
-      throws MailNotFoundException {
+  {
     try {
+      log.info("Waiting 10s for email");
+      Thread.sleep(1000);
       Message message = getMessage(getMessageInfo(recipientAddress, subject));
+
       return HOST + "mailbox/" + message.mailbox + "/" + message.id + "/html";
-    } catch (IOException e) {
+    } catch (IOException | InterruptedException | MailNotFoundException e) {
       log.error("Could not retrieve mailbox from Inbucket", e);
     }
     return "";
