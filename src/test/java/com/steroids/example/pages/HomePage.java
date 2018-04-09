@@ -5,6 +5,7 @@ import com.galenframework.api.Galen;
 import com.galenframework.reports.GalenTestInfo;
 import com.galenframework.reports.HtmlReportBuilder;
 import com.galenframework.reports.model.LayoutReport;
+import com.google.gson.Gson;
 import com.steroids.example.framework.AbstractPage;
 
 import org.openqa.selenium.By;
@@ -20,6 +21,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+
 
 public class HomePage extends AbstractPage {
 
@@ -29,6 +32,10 @@ public class HomePage extends AbstractPage {
   private static final By BY_JAPO_MODAL = By.id("japubox-popover__modal");
   private static final By BY_JAPO_EMAIL_FIELD = By.cssSelector(".modal-content [name='email']");
   private static final By BY_JAPO_SAVE_BUTTON = By.cssSelector(".modal-content [type='submit']");
+  private long loadEventStart;
+  private long navigationStart;
+  private long backEndTime;
+  private long responseStart;
 
 
   public HomePage(WebDriver driver) {
@@ -68,8 +75,14 @@ public class HomePage extends AbstractPage {
   public void checkPerformance() {
     JavascriptExecutor js = (JavascriptExecutor) getDriver();
     String
-        outcome =
+        timings =
         js.executeScript("return (JSON.stringify(window.performance.timing))").toString();
-    System.out.println(outcome);
+    Gson gson = new Gson();
+    HomePage thing = gson.fromJson(timings, HomePage.class);
+    long pageLoadTime = thing.loadEventStart - thing.navigationStart;
+    long backendTime = thing.responseStart - thing.navigationStart;
+    logInfo("pageLoadTime" + pageLoadTime);
+    logInfo("backendTime" + backendTime);
+
   }
 }

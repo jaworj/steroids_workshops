@@ -14,4 +14,4 @@ Feature: Job alert
     Then   I check layout on "desktop"
     When   I click confirmation button
     Then   I am on Password Set page
-    #Then I check performance
+    Then   I check pgit erformance
