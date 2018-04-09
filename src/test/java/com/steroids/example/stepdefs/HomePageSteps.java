@@ -68,12 +68,12 @@ public class HomePageSteps {
     homePage.performSearch();
   }
 
-  @Then("^Japo is shown$")
+  @Then("^JobAgent Popover is shown$")
   public void japoIsShown() {
     assertThat(homePage.japoIsDisplayed()).isTrue();
   }
 
-  @Then("^I type random email into Japo$")
+  @Then("^I type random email into JobAgent Popover$")
   public void typeRandomEmailIntoJapo() {
     email =
         "test" + UUID.randomUUID().toString().substring(0, 10)
@@ -83,7 +83,7 @@ public class HomePageSteps {
     //TODO: Rozkminić jak ograć loginfo żeby nie odwoływać się do AbstractPage
   }
 
-  @And("^I save JobAgent from Japo$")
+  @And("^I save JobAgent from JobAgent Popover")
   public void saveJobAgentFromJapo() {
     homePage.saveJobAgentFromJapo();
   }
