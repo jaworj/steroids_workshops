@@ -3,7 +3,7 @@ package com.steroids.example.framework;
 
 public class MailNotFoundException extends Exception {
 
-  public MailNotFoundException(String message) {
+  MailNotFoundException(String message) {
     super(message);
   }
 }

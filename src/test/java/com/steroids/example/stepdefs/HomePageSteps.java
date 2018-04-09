@@ -36,7 +36,19 @@ public class HomePageSteps {
   public void initWebDriver() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--start-maximized");
-    System.setProperty("webdriver.chrome.driver", "/Users/ozibkm01/Documents/Selenium/chromedriver");
+    String os = System.getProperty("os.name").toLowerCase();
+    ClassLoader classLoader = getClass().getClassLoader();
+    String path  = classLoader.getResource("chromedriver").getPath();
+
+    if (os.contains("win")) {
+        path  = classLoader.getResource("chromedriver.exe").getPath();
+      System.setProperty("webdriver.chrome.driver", path);
+    } else if (os.contains("mac")) {
+        path  = classLoader.getResource("chromedriver").getPath();
+      System.setProperty("webdriver.chrome.driver", path);
+    } else
+        path  = classLoader.getResource("chromedriverlin").getPath();
+      System.setProperty("webdriver.chrome.driver", path);
     driver = new ChromeDriver(options);
   }
 
@@ -84,7 +96,7 @@ public class HomePageSteps {
 
   @Then("^I check layout on \"([^\"]*)\"$")
   public void checkLooksGood(String device) throws IOException {
-    jobAgentConfirmationEmailPage.confirmationEmailPageLayoutTest(driver);
+    homePage.homePageLayoutTest(driver);
   }
 
   @Then("^I check performance$")

@@ -6,7 +6,6 @@ import com.galenframework.reports.HtmlReportBuilder;
 import com.galenframework.reports.model.LayoutReport;
 import com.steroids.example.framework.AbstractPage;
 import com.steroids.example.framework.EmailChecker;
-import com.steroids.example.framework.MailNotFoundException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -28,12 +27,7 @@ public class JobAgentConfirmationEmailPage extends AbstractPage {
 
   public PasswordSetPage confirmEmailMessageFistep(String email, String subject) {
     EmailChecker emailChecker = new EmailChecker();
-    String url = null;
-    try {
-      url = emailChecker.getMessageUrl(email, subject);
-    } catch (MailNotFoundException e) {
-      log.error("Cannot found confirmation email", e);
-    }
+    String url = emailChecker.getMessageUrl(email, subject);
     if (!Objects.equals(url, getDriver().getCurrentUrl())) {
       goToConfirmationEmailFistep(email, subject);
     }
@@ -49,16 +43,8 @@ public class JobAgentConfirmationEmailPage extends AbstractPage {
     logInfo("Subject parameter: " + subject);
     logInfo("Subject from xml: " + subject);
     logInfo("Email: " + email);
-    logInfo("Wait 10 seconds for message...");
-    //Utils.wait(10);
-    logInfo("Wait 10 seconds for message. Done");
     EmailChecker emailChecker = new EmailChecker();
-    String url = null;
-    try {
-      url = emailChecker.getMessageUrl(email, subject);
-    } catch (MailNotFoundException e) {
-      log.error("Cannot found confirmation email", e);
-    }
+    String url = emailChecker.getMessageUrl(email, subject);
     getDriver().get(url);
   }
 
