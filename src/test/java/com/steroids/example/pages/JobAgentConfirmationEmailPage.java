@@ -51,10 +51,11 @@ public class JobAgentConfirmationEmailPage extends AbstractPage {
   public void confirmationEmailPageLayoutTest(WebDriver driver) throws IOException {
     //Create a layoutReport object
     //checkLayout function checks the layout and returns a LayoutReport object
-    LayoutReport
-        layoutReport =
-        Galen.checkLayout(driver, "specs/email.gspec",
-                          Arrays.asList("desktop"));
+    String pathToSpecs = "/com/steroids/example/specs/email.gspec";
+    if (System.getProperty("os.name").toLowerCase().contains("win")) {
+      pathToSpecs = "com\\steroids\\example\\specs\\email.gspec";
+    }
+    LayoutReport layoutReport = Galen.checkLayout(driver, pathToSpecs, Arrays.asList("desktop"));
 
     //Create a tests list
     List<GalenTestInfo> tests = new LinkedList<>();
