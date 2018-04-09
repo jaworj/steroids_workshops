@@ -97,7 +97,7 @@ public class HomePageSteps {
 
   @Then("^I check layout on \"([^\"]*)\"$")
   public void checkLooksGood(String device) throws IOException {
-    homePage.homePageLayoutTest(driver);
+    jobAgentConfirmationEmailPage.confirmationEmailPageLayoutTest(driver);
   }
 
   @Then("^I check performance$")
