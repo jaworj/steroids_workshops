@@ -30,8 +30,7 @@ public class EmailChecker {
     return null;
   }
 
-  public String getMessageUrl(String recipientAddress, String subject)
-  {
+  public String getMessageUrl(String recipientAddress, String subject) {
     try {
       log.info("Waiting 10s for email");
       Thread.sleep(1000);

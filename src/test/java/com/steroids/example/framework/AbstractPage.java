@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public abstract class AbstractPage {
 
-  protected static final Logger log = LogManager.getLogger(AbstractPage.class);
+  private static final Logger log = LogManager.getLogger(AbstractPage.class);
   private WebDriver driver;
 
   public AbstractPage(WebDriver driver) {
