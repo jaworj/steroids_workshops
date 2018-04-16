@@ -3,10 +3,12 @@
   blue-header css .header-blue_rounded-top:nth-of-type(1)
 
 = header =
-  header:
-    height 60 px
+  @on mobile
+    header:
+        height 60 px
 
 = blue-header =
-  blue-header:
-    text contains "Sehr geehrter StepStone Nutzer!"
-    below header 10 to 14 px
+  @on desktop
+    blue-header:
+        text contains "Sehr geehrter StepStone Nutzer!"
+        below header 10 to 14 px
