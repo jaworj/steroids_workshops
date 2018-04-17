@@ -9,6 +9,7 @@ import com.steroids.example.framework.EmailChecker;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.io.IOException;
@@ -31,11 +32,9 @@ public class JobAgentConfirmationEmailPage extends AbstractPage {
     if (!Objects.equals(url, getDriver().getCurrentUrl())) {
       goToConfirmationEmailFistep(email, subject);
     }
-    String confirmationUrl =
-        getDriver().findElement(
-            By.cssSelector("a[href*='EasyJobagent.register']")).getAttribute("href");
+    //TODO: Find and click confirmation button
+    WebElement confirmationUrl;
 
-    getDriver().get(confirmationUrl);
     return new PasswordSetPage(getDriver());
   }
 

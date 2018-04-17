@@ -36,7 +36,8 @@ public class EmailChecker {
       Thread.sleep(1000);
       Message message = getMessage(getMessageInfo(recipientAddress, subject));
 
-      return HOST + "mailbox/" + message.mailbox + "/" + message.id + "/html";
+      //TODO: Return url to HTML version of email
+      return "";
     } catch (IOException | InterruptedException | MailNotFoundException e) {
       log.error("Could not retrieve mailbox from Inbucket", e);
     }

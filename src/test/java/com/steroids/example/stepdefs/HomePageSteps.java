@@ -80,7 +80,6 @@ public class HomePageSteps {
         + "@ec2-34-244-6-12.eu-west-1.compute.amazonaws.com";
     homePage.typeEmailToJapo(email);
     AbstractPage.logInfo(email);
-    //TODO: Rozkminić jak ograć loginfo żeby nie odwoływać się do AbstractPage
   }
 
   @And("^I save JobAgent from JobAgent Popover")
