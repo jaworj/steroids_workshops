@@ -47,14 +47,14 @@ public class JobAgentConfirmationEmailPage extends AbstractPage {
     getDriver().get(url);
   }
 
-  public void confirmationEmailPageLayoutTest(WebDriver driver) throws IOException {
+  public void confirmationEmailPageLayoutTest(WebDriver driver, String device) throws IOException {
     //Create a layoutReport object
     //checkLayout function checks the layout and returns a LayoutReport object
     String pathToSpecs = "/com/steroids/example/specs/email.gspec";
     if (System.getProperty("os.name").toLowerCase().contains("win")) {
       pathToSpecs = "com\\steroids\\example\\specs\\email.gspec";
     }
-    LayoutReport layoutReport = Galen.checkLayout(driver, pathToSpecs, Arrays.asList("desktop"));
+    LayoutReport layoutReport = Galen.checkLayout(driver, pathToSpecs, Arrays.asList(device));
 
     //Create a tests list
     List<GalenTestInfo> tests = new LinkedList<>();
