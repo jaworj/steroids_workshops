@@ -6,14 +6,3 @@ Feature: Job alert
   @automated @desktop @jobAlert
   Scenario: Create and confirm JobAgent
     Given  I am on the home page
-    When   I perform search
-    Then   JobAgent Popover is shown
-    Then   I type random email into JobAgent Popover
-    And    I save JobAgent from JobAgent Popover
-    Then   Open JobAgent confirmation email
-    Then   I check layout on "desktop"
-    When   I click confirmation button
-    Then   I am on Password Set page
-    Then   I check pgit erformance
-#    Then   I check performance
-
