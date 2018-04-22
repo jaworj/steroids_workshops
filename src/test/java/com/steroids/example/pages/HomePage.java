@@ -32,10 +32,6 @@ public class HomePage extends AbstractPage {
   private static final By BY_JAPO_MODAL = By.id("japubox-popover__modal");
   private static final By BY_JAPO_EMAIL_FIELD = By.cssSelector(".modal-content [name='email']");
   private static final By BY_JAPO_SAVE_BUTTON = By.cssSelector(".modal-content [type='submit']");
-  private long loadEventStart;
-  private long navigationStart;
-  private long backEndTime;
-  private long responseStart;
 
 
   public HomePage(WebDriver driver) {
@@ -74,15 +70,20 @@ public class HomePage extends AbstractPage {
 
   public void checkPerformance() {
     JavascriptExecutor js = (JavascriptExecutor) getDriver();
-    String
-        timings =
-        js.executeScript("return (JSON.stringify(window.performance.timing))").toString();
+    String timings =  js.executeScript("return (window.performance.timing)").toString();
     Gson gson = new Gson();
-    HomePage thing = gson.fromJson(timings, HomePage.class);
-    long pageLoadTime = thing.loadEventStart - thing.navigationStart;
-    long backendTime = thing.responseStart - thing.navigationStart;
-    logInfo("pageLoadTime" + pageLoadTime);
-    logInfo("backendTime" + backendTime);
+    Timings timingsJson = gson.fromJson(timings, Timings.class);
+    long pageLoadTime = timingsJson.loadEventStart - timingsJson.navigationStart;
+    long backendTime = timingsJson.responseStart - timingsJson.navigationStart;
+    logInfo("pageLoadTime: " + pageLoadTime);
+    logInfo("backendTime: " + backendTime);
+  }
+
+  class Timings {
+    private long loadEventStart;
+    private long navigationStart;
+    private long backEndTime;
+    private long responseStart;
 
   }
 }
