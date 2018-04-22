@@ -66,18 +66,7 @@ public class HomePage extends AbstractPage {
 
   public void saveJobAgentFromJapo() {
     getDriver().findElement(BY_JAPO_SAVE_BUTTON).click();
-  }
-
-  public void checkPerformance() {
-    JavascriptExecutor js = (JavascriptExecutor) getDriver();
-    String timings =  js.executeScript("return (window.performance.timing)").toString();
-    Gson gson = new Gson();
-    Timings timingsJson = gson.fromJson(timings, Timings.class);
-    long pageLoadTime = timingsJson.loadEventStart - timingsJson.navigationStart;
-    long backendTime = timingsJson.responseStart - timingsJson.navigationStart;
-    logInfo("pageLoadTime: " + pageLoadTime);
-    logInfo("backendTime: " + backendTime);
-  }
+  }git
 
   class Timings {
     private long loadEventStart;
