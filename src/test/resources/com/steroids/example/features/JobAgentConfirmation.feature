@@ -15,4 +15,3 @@ Feature: Job alert
     When   I click confirmation button
     Then   I am on Password Set page
     Then   I check performance
-
