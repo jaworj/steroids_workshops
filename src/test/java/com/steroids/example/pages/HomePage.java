@@ -66,7 +66,7 @@ public class HomePage extends AbstractPage {
 
   public void saveJobAgentFromJapo() {
     getDriver().findElement(BY_JAPO_SAVE_BUTTON).click();
-  }git
+  }
 
   class Timings {
     private long loadEventStart;
