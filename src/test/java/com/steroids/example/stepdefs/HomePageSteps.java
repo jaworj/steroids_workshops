@@ -87,7 +87,7 @@ public class HomePageSteps {
     homePage.saveJobAgentFromJapo();
   }
 
-  @Then("^Open JobAgent confirmation email$")
+  @Then("^Confirm JobAgent from email$")
   public void checkJobAgentConfirmationEmail() throws MailNotFoundException {
     subject = "Bitte bestätigen Sie Ihren Job Agent - StepStone";
     jobAgentConfirmationEmailPage = new JobAgentConfirmationEmailPage(driver);
