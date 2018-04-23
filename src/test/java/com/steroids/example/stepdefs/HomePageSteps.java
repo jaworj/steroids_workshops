@@ -114,4 +114,6 @@ public class HomePageSteps {
   public void iAmOnPasswordSetPage() {
     Assert.assertTrue(passwordSetPage.checkIfThisIsPasswordSetPage());
   }
+
+  //TODO: wydajność ma znaczenie
 }
