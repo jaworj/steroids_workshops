@@ -99,11 +99,6 @@ public class HomePageSteps {
     jobAgentConfirmationEmailPage.confirmationEmailPageLayoutTest(driver, device);
   }
 
-  @Then("^I check performance$")
-  public void checkPerf() {
-    homePage.checkPerformance();
-  }
-
   @After(value = "@automated")
   public void disposeWebDriver() {
     driver.quit();
@@ -119,4 +114,6 @@ public class HomePageSteps {
   public void iAmOnPasswordSetPage() {
     Assert.assertTrue(passwordSetPage.checkIfThisIsPasswordSetPage());
   }
+
+  //TODO: wydajność ma znaczenie
 }

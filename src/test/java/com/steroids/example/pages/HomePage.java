@@ -72,17 +72,4 @@ public class HomePage extends AbstractPage {
     getDriver().findElement(BY_JAPO_SAVE_BUTTON).click();
   }
 
-  public void checkPerformance() {
-    JavascriptExecutor js = (JavascriptExecutor) getDriver();
-    String
-        timings =
-        js.executeScript("return (JSON.stringify(window.performance.timing))").toString();
-    Gson gson = new Gson();
-    HomePage thing = gson.fromJson(timings, HomePage.class);
-    long pageLoadTime = thing.loadEventStart - thing.navigationStart;
-    long backendTime = thing.responseStart - thing.navigationStart;
-    logInfo("pageLoadTime" + pageLoadTime);
-    logInfo("backendTime" + backendTime);
-
-  }
 }
