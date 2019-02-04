@@ -36,8 +36,7 @@ public class PasswordSetPage extends AbstractPage {
   @FindBy(css = "#setPassword>strong")
   private WebElement elSetPasswordSuccessMessage;
 
-  private static final By PASSWORD_SECTION = By.id("login_passw1_text");
-
+  private static final By PASSWORD_SECTION = By.className("input-field_password");
 
 
   public boolean checkIfThisIsPasswordSetPage() {

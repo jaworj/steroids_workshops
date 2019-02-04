@@ -5,7 +5,7 @@
 @on desktop
 = header =
     header:
-        height 60 px
+        height 54 px
 
 = blue-header =
     blue-header:
