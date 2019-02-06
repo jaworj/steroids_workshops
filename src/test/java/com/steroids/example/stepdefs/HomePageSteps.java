@@ -115,3 +115,5 @@ public class HomePageSteps {
     Assert.assertTrue(passwordSetPage.checkIfThisIsPasswordSetPage());
   }
 }
+
+  //TODO: wydajność ma znaczenie
